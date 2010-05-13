@@ -77,7 +77,7 @@ Array.NUMERIC = 16;
       };
       
       if (options[0] & Array.RETURNINDEXEDARRAY)
-        return Array.apply(null,this).sort(curry_sort);
+        return this.slice().sort(curry_sort);
       else
         this.sort(curry_sort);
     }
