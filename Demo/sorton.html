@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <title></title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/mootools/1.2.4/mootools-yui-compressed.js"></script>
+  <script type="text/javascript" src="../Source/Array.sortOn.js"></script>
+  <script type="text/javascript">
+    var test_data;
+
+    var prime_data = function(){
+      window.test_data = [
+        {name:"john", city:"omaha", zip:68144},
+        {name:"john", city:"kansas city", zip:72345},
+        {name:"bob", city:"omaha", zip:94010},
+        {name:"Frank", city:"omaha", zip:9210}
+      ];
+    };
+    
+    var pretty_print_data = function(data) {
+      return JSON.encode(data).replace(/(\},)/g, '},\n').replace(/\[\{/g, '[\n{').replace(/\}\]/g, '}\n]').replace(/\{/g, '  {');
+    };
+    
+    var display_data = function(data, owner) {
+      owner.getParent('.sample').getElement('.output_area').set('text', pretty_print_data(data));
+    };
+    
+    document.addEvent('domready', function() {
+      document.id('name_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("name");
+        display_data(test_data, this);
+      });
+      
+      document.id('name_i_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("name", Array.CASEINSENSITIVE);
+        display_data(test_data, this);
+      });
+      
+      document.id('name_i_d_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("name", Array.CASEINSENSITIVE | Array.DESCENDING);
+        display_data(test_data, this);
+      });
+      
+      document.id('city_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("city");
+        display_data(test_data, this);
+      });
+      
+      document.id('city_name_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn(["city", "name"]);
+        display_data(test_data, this);
+      });
+      
+      document.id('name_city_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn(["name", "city"]);
+        display_data(test_data, this);
+      });
+      
+      document.id('name_city_2_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn(["name", "city"], [Array.CASEINSENSITIVE, Array.DESCENDING]);
+        display_data(test_data, this);
+      });
+      
+      document.id('zip_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("zip");
+        display_data(test_data, this);
+      });
+      
+      document.id('zip_n_sort').addEvent('click', function() {
+        prime_data();
+        test_data.sortOn("zip", Array.NUMERIC);
+        display_data(test_data, this);
+      });
+    });
+  </script>
+  
+  <style type="text/css">
+    .sample {
+      border-top: 2px solid #ddd;
+    }
+    
+    pre {
+      border: 1px solid #dfd;
+      background-color: #f4fff4;
+      padding: 2px;
+      float: left;
+    }
+    
+    .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+  </style>
+</head>
+
+<body>
+  <h2>Input Data</h2>
+  <div class="clearfix"><pre>
+[
+  {name:"john", city:"omaha", zip:68144},
+  {name:"john", city:"kansas city", zip:72345},
+  {name:"bob", city:"omaha", zip:94010},
+  {name:"Frank", city:"omaha", zip:90210}
+]</pre></div>
+  
+  <div class="sample">
+    <p><button type="button" id="name_sort">Sort</button> by name</p>
+    <p>code: <code>test_data.sortOn("name");</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="name_i_sort">Sort</button> by name case insensitive</p>
+    <p>code: <code>test_data.sortOn("name", Array.CASEINSENSITIVE);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="name_i_d_sort">Sort</button> by name case insensitive and reverse order</p>
+    <p>code: <code>test_data.sortOn("name", Array.CASEINSENSITIVE | Array.DESCENDING);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="city_sort">Sort</button> by city</p>
+    <p>code: <code>test_data.sortOn("city");</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="city_name_sort">Sort</button> by city and then by name</p>
+    <p>code: <code>test_data.sortOn(["city", "name"]);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="name_city_sort">Sort</button> by name and then by city</p>
+    <p>code: <code>test_data.sortOn(["name", "city"]);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="name_city_2_sort">Sort</button> by name and then by city, case insensitive on name, descending on city</p>
+    <p>code: <code>test_data.sortOn(["name", "city"], [Array.CASEINSENSITIVE, Array.DESCENDING]);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="zip_sort">Sort</button> by zipcode (notice that default behavior is that numbers are sorted alphabetically, even if they are originally a number and not a string)</p>
+    <p>code: <code>test_data.sortOn("zip");</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+  <div class="sample">
+    <p><button type="button" id="zip_n_sort">Sort</button> by zipcode using numerical sort</p>
+    <p>code: <code>test_data.sortOn("zip", Array.NUMERIC);</code></p>
+    <div class="clearfix"><pre class="output_area"></pre></div>
+  </div>
+  
+</body>
+</html>
