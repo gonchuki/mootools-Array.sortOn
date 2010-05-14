@@ -89,6 +89,8 @@ you can do:
       {"name":  {"first":"Tim","last":"Marley"}, "age":9}
     ]
 
+Note: this last feature is outside of the ActionScript API but it's been included for its potential usefulness.
+
 Misc
 ----------
 
