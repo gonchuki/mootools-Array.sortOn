@@ -39,11 +39,19 @@ Array.NUMERIC = 16;
   
   var sort_fn = function(item_a, item_b, fields, options) {
     return (function sort_by(fields, options) {
-      var ret, 
-          field = fields[0],
+      var ret, a, b, 
           opts = options[0],
-          a = item_a[field].toString(),
-          b = item_b[field].toString();
+          sub_fields = fields[0].match(/[^.]+/g);
+      
+      (function get_values(s_fields, s_a, s_b) {
+        var field = s_fields[0];
+        if (s_fields.length > 1) {
+          get_values(s_fields.slice(1), s_a[field], s_b[field]);
+        } else {
+          a = s_a[field].toString(),
+          b = s_b[field].toString();
+        }
+      })(sub_fields, item_a, item_b);
       
       if (opts & Array.NUMERIC) {
         ret = (a.toFloat() - b.toFloat());
