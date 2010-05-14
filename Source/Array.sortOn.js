@@ -16,7 +16,7 @@ requires:
 - core:1.2.4/Array
 
 provides: 
-- Array.sortOn
+- [Array.sortOn, Array.CASEINSENSITIVE, Array.DESCENDING, Array.UNIQUESORT, Array.RETURNINDEXEDARRAY, Array.NUMERIC]
 
 ...
 */
