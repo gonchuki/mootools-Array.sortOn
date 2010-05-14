@@ -1,6 +1,8 @@
 Array.sortOn
 ===========
 
+![icon](http://github.com/gonchuki/mootools-Array.sortOn/raw/master/icon.png)
+
 Adds Array.sortOn function and related constants that works like in ActionScript for sorting arrays of objects (plus adding support for nested keys).
 The implementation strictly respects all the rules set by the [ActionScript API](http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/Array.html#sortOn(\))
 
