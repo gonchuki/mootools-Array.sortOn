@@ -11,6 +11,7 @@ How to use
 
 Given an array of objects:
 
+    #JS
     var data = [
       {name:"john", city:"omaha", zip:68144},
       {name:"john", city:"kansas city", zip:72345},
@@ -20,6 +21,7 @@ Given an array of objects:
   
 It can be sorted by any key in the object:
 
+    #JS
     data.sortOn("name");
 
     [
@@ -44,6 +46,7 @@ Several constants are defined to control the sorting rules (you can use more tha
 
 Sorting case-insensitive and reversing order:
 
+    #JS
     data.sortOn("name", Array.CASEINSENSITIVE | Array.DESCENDING)
     
     [
@@ -58,6 +61,7 @@ When using this approach, the options array must have the same length as the key
 
 Sorting is done from "left to right": the first key is the primary sort key, and comparisons that determine two items are equal are defined by using the next sort key.
 
+    #JS
     data.sortOn(["name", "city"], [Array.CASEINSENSITIVE, null]);
     
     [
@@ -69,6 +73,7 @@ Sorting is done from "left to right": the first key is the primary sort key, and
 
 Sort keys can also be part of a nested object, so with input data like:
 
+    #JS
     var data = [
       { name: { first: 'Josh', last: 'Jones' }, age: 30 },
       { name: { first: 'Carlos', last: 'Jacques' }, age: 19 },
@@ -79,7 +84,8 @@ Sort keys can also be part of a nested object, so with input data like:
     ]
     
 you can do:
-    
+
+    #JS
     data.sortOn(['name.first', 'name.last']);
 
     [

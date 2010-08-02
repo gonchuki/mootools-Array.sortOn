@@ -13,7 +13,7 @@ authors:
 docs: http://www.adobe.com/livedocs/flash/9.0/ActionScriptLangRefV3/Array.html#sortOn()
 
 requires:
-- core:1.2.4/Array
+- core/1.2.4: [Array]
 
 provides: 
 - [Array.sortOn, Array.CASEINSENSITIVE, Array.DESCENDING, Array.UNIQUESORT, Array.RETURNINDEXEDARRAY, Array.NUMERIC]
